@@ -1,0 +1,4 @@
+#+TITLE: dired-poke
+#+AUTHOR: Laluxx
+
+Jump to common places in the file system
