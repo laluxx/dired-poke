@@ -1,4 +1,34 @@
 #+TITLE: dired-poke
 #+AUTHOR: Laluxx
 
+<<<<<<< HEAD
+Poke arround the file system
+
+* Install
+
+Clone it
+#+begin_src shell
+git clone https://github.com/laluxx/activate-emacs ~/.config/emacs/lisp/activate-emacs
+#+end_src>
+
+Add to '~/.config/emacs/init.el'
+
+#+begin_src elisp
+(use-package dired-poke
+  :load-path "~/.config/emacs/lisp/dired-poke"
+  :config
+  (setq dired-poke-alist
+        `((?D . ,(expand-file-name "~/Desktop"))       ; /d for Desktop
+          (?d . ,(expand-file-name "~/Downloads"))     ; /D for Downloads
+          (?v . ,(expand-file-name "~/Videos"))        ; /v for Videos
+          (?p . ,(expand-file-name "~/Pictures"))      ; /p for Pictures
+          (?m . ,(expand-file-name "~/Music"))         ; /m for Music
+          (?c . ,(expand-file-name "~/Documents"))     ; /c for Documents
+          (?h . ,(expand-file-name "~/"))              ; /h for Home
+          (?e . ,(expand-file-name "~/.config/emacs")) ; /e for Emacs config
+          (?o . ,(expand-file-name "~/org"))           ; /o for Org directory
+          )))
+#+end_src
+=======
 Jump to common places in the file system
+>>>>>>> 7cf2e93 (initial commit)
