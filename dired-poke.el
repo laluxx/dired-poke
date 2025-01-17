@@ -9,7 +9,6 @@
 
 ;;; Commentary:
 
-;; Quick directory jumps for dired.
 ;; Press / followed by:
 ;; d -> Downloads
 ;; D -> Desktop
@@ -40,15 +39,18 @@
   :type '(alist :key-type character :value-type directory)
   :group 'dired-poke)
 
-(defvar dired-poke-map
+(defun dired-poke-update-map ()
+  "Update the keymap with current `dired-poke-alist' bindings."
   (let ((map (make-sparse-keymap)))
     (dolist (binding dired-poke-alist)
       (let ((key (car binding)))
-        (define-key map (string key)  ; Use string to preserve case
+        (define-key map (string key)
                     `(lambda ()
                        (interactive)
                        (dired ,(cdr binding))))))
-    map)
+    (define-key dired-mode-map (kbd "/") map)))
+
+(defvar dired-poke-map (make-sparse-keymap)
   "Keymap for dired-poke shortcuts.")
 
 ;;;###autoload
@@ -59,8 +61,7 @@
       (dired dir)
     (user-error "No directory associated with '%c'" char)))
 
-;; Add to dired-mode-map with case-sensitivity
-(define-key dired-mode-map (kbd "/") dired-poke-map)
+(add-hook 'dired-mode-hook #'dired-poke-update-map)
 
 (provide 'dired-poke)
 
